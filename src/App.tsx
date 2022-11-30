@@ -9,7 +9,7 @@ import { Product } from './components/Product';
 import { useDispatch, useSelector } from 'react-redux'
 import { Store } from './model/model';
 import reducer from './store/reducer';
-import { setProducts } from './store/actions';
+import { setFetchData, setProducts } from './store/actions';
 // pages imports
 // import ProductList from './components/ProductList';
 import ProductDetail from './components/ProductDetail';
@@ -33,6 +33,7 @@ const App: React.FC = () => {
       .then(products => {
 
         dispatch(setProducts(products));
+        dispatch(setFetchData(products));
         console.log(products);
       }
         )

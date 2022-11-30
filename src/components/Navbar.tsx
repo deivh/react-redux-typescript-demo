@@ -1,13 +1,14 @@
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { filterSelector, productsSelector, searchSelector } from '../store/selectors';
+import { fetchDataSelector, filterSelector, productsSelector, searchSelector } from '../store/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilter, setProducts, setSearchTerm } from '../store/actions';
+import { Product } from './Product';
 const Navbar = () => {
     const dispatch = useDispatch();
     const stockState = useSelector(filterSelector);
-    const productsOg = useSelector(productsSelector);
     const productsToFilter = useSelector(productsSelector);
+    const productsOg = useSelector(fetchDataSelector);
     const searchTerm = useSelector(searchSelector);
     const setStockStateTrue = (() => {
        let stockCheck = stockState === null ? true : null;
@@ -24,8 +25,8 @@ const Navbar = () => {
         
     })
     
-    const SearchProduct = () => {
-
+    const SearchProduct = (event: React.ChangeEvent<string>, searchTerm: string) => {
+        dispatch(setSearchTerm(searchTerm))
     }
 
     console.log(productsOg);
@@ -62,7 +63,10 @@ const Navbar = () => {
                     label="search product by name"
                     variant="outlined"
                     value={searchTerm}
-                    onChange={SearchProduct}
+                    onChange={ (e) => {
+                        dispatch(setSearchTerm(e.target.value.toLowerCase()));
+                        dispatch(setProducts(productsToFilter.filter(prod => searchTerm ? prod.name.toLowerCase().includes(searchTerm) : true)));
+                    } }
                     type="text"
                     placeholder="search product by name"
                     name="src"

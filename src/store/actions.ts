@@ -9,10 +9,11 @@ export const setProducts = (data: Product[]): SetProductAction => {
     }
   }
 
-type SetFetchDataAction = { type: 'SET_FETCH_DATA', fetchDataType: Product[] };
-export const setFetchData = () => {
+type SetFetchDataAction = { type: 'SET_FETCH_DATA', fetchData: Product[] };
+export const setFetchData = (fetchData: Product[]): SetFetchDataAction => {
     return {
-        type: 'SET_FETCH_DATA'
+        type: 'SET_FETCH_DATA',
+        fetchData
     }
 }
 
@@ -32,9 +33,10 @@ export const setFilter = (filter: Filter): SetFilter => ({
 })
 
 type SetSearchTerm = { type: 'SET_SEARCH_TERM', searchTerm: string};
-export const setSearchTerm = () => {
-    return {
-        type: 'SET_SEARCH_TERM'
+export const setSearchTerm = (searchTerm: string) : SetSearchTerm => {
+        return {
+        type: 'SET_SEARCH_TERM',
+        searchTerm
     }
 }
 

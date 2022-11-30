@@ -6,17 +6,18 @@ import { Action } from "./actions";
 const initialStore: Store = {
     filter: null,
     data: <Product[]>[],
-    searchTerm: ''
+    searchTerm: '',
+    fetchData: <Product[]>[],
 }
 
 function reducer(state = initialStore, action: Action) {
     switch (action.type) {
-        case 'SET_PRODUCTS':
+        case 'SET_PRODUCTS' :
             return {
                 ...state,
                 data: action.data
             }
-        case 'SET_FILTER':
+        case 'SET_FILTER' :
             return {
                 ...state,
                 filter: action.filter
@@ -26,6 +27,12 @@ function reducer(state = initialStore, action: Action) {
             return {
                 ...state,
                 searchTerm: action.searchTerm
+            }
+
+        case 'SET_FETCH_DATA' :    
+            return {
+                ...state,
+                fetchData: action.fetchData
             }
         default:
             return state
