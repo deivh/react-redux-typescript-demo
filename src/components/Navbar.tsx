@@ -1,18 +1,36 @@
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { filterSelector } from '../store/selectors';
+import { filterSelector, productsSelector, searchSelector } from '../store/selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilter } from '../store/actions';
+import { setFilter, setProducts, setSearchTerm } from '../store/actions';
 const Navbar = () => {
     const dispatch = useDispatch();
     const stockState = useSelector(filterSelector);
-    function setStockStateTrue() {
-        stockState === null ? true : null;
-        dispatch(setFilter(stockState));
+    const productsOg = useSelector(productsSelector);
+    const productsToFilter = useSelector(productsSelector);
+    const searchTerm = useSelector(searchSelector);
+    const setStockStateTrue = (() => {
+       let stockCheck = stockState === null ? true : null;
+        dispatch(setFilter(stockCheck));
+        dispatch(setProducts(productsToFilter.filter(e => e.availability.stock > 0)))
+    })
+    const setStockStateFalse = (() => {
+        
+        let stockCheck = stockState === null ? false : null;
+        dispatch(setFilter(stockCheck));
+        console.log(stockState);
+        dispatch(setProducts(productsToFilter.filter(e => e.availability.stock === 0)));
+        console.log(productsToFilter);
+        
+    })
+    
+    const SearchProduct = () => {
+
     }
-    function setStockStateFalse() {
-        stockState === null ? false : null;
-        dispatch(setFilter(stockState));
+
+    console.log(productsOg);
+    function resetProducts(){
+        dispatch(setProducts(productsOg))
     }
     return (
         <div className="search-bar">
@@ -43,15 +61,15 @@ const Navbar = () => {
                     id="outlined-basic"
                     label="search product by name"
                     variant="outlined"
-                    // value={searchQuery}
-                    // onInput={e => setSearchQuery(e.target.value)}
+                    value={searchTerm}
+                    onChange={SearchProduct}
                     type="text"
                     placeholder="search product by name"
                     name="src"
                 />
             </Box>
 
-            <button value="reset">
+            <button value="reset" onClick={resetProducts}>
                 RESET
             </button>
             <div className="search">

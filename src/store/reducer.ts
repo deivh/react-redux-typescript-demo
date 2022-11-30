@@ -3,13 +3,13 @@ import { Store } from "../model/model";
 import { Action } from "./actions";
 
 
-const defaultStore: Store = {
+const initialStore: Store = {
     filter: null,
     data: <Product[]>[],
     searchTerm: ''
 }
 
-function reducer(state = defaultStore, action: Action) {
+function reducer(state = initialStore, action: Action) {
     switch (action.type) {
         case 'SET_PRODUCTS':
             return {

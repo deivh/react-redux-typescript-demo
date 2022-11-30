@@ -9,7 +9,7 @@ export const setProducts = (data: Product[]): SetProductAction => {
     }
   }
 
-type SetFetchDataAction = { type: 'SET_FETCH_DATA', fetchDataType: [] };
+type SetFetchDataAction = { type: 'SET_FETCH_DATA', fetchDataType: Product[] };
 export const setFetchData = () => {
     return {
         type: 'SET_FETCH_DATA'
