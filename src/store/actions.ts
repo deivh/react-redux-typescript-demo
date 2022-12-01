@@ -1,4 +1,4 @@
-import { Product } from "../components/Product"
+import { Product, ProductDetail } from "../components/Product"
 import { Filter } from "../model/model";
 
 type SetProductAction = { type: 'SET_PRODUCTS', data: Product[] };
@@ -8,6 +8,14 @@ export const setProducts = (data: Product[]): SetProductAction => {
       data,
     }
   }
+
+type SetProductDetailAction = { type: 'SET_DETAIL', productDetail: ProductDetail };
+export const setDetail = (productDetail: ProductDetail): SetProductDetailAction => {
+    return {
+      type: 'SET_DETAIL',
+      productDetail,
+  }
+}
 
 type SetFetchDataAction = { type: 'SET_FETCH_DATA', fetchData: Product[] };
 export const setFetchData = (fetchData: Product[]): SetFetchDataAction => {
@@ -40,4 +48,4 @@ export const setSearchTerm = (searchTerm: string) : SetSearchTerm => {
     }
 }
 
-export type Action = SetFetchDataAction | SetLoadingAction | SetProductAction | SetFilter | SetSearchTerm;
+export type Action = SetFetchDataAction | SetLoadingAction | SetProductAction | SetFilter | SetSearchTerm | SetProductDetailAction;

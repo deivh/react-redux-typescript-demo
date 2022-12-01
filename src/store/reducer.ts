@@ -1,4 +1,4 @@
-import { Product } from "../components/Product";
+import { Product, ProductDetail } from "../components/Product";
 import { Store } from "../model/model";
 import { Action } from "./actions";
 
@@ -8,6 +8,7 @@ const initialStore: Store = {
     data: <Product[]>[],
     searchTerm: '',
     fetchData: <Product[]>[],
+    productDetail: <ProductDetail>{},
 }
 
 function reducer(state = initialStore, action: Action) {
@@ -33,6 +34,12 @@ function reducer(state = initialStore, action: Action) {
             return {
                 ...state,
                 fetchData: action.fetchData
+            }
+
+        case 'SET_DETAIL' : 
+            return {
+                ...state,
+                productDetail: action.productDetail
             }
         default:
             return state

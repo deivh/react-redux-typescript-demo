@@ -7,3 +7,5 @@ export const filterSelector = (state: Store) => state.filter;
 export const searchSelector = (state: Store) => state.searchTerm;
 
 export const fetchDataSelector = (state: Store) => state.fetchData;
+
+export const productDetailSelector = (state: Store) => state.productDetail;

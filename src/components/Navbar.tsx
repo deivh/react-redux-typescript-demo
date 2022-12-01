@@ -25,9 +25,9 @@ const Navbar = () => {
         
     })
     
-    const SearchProduct = (event: React.ChangeEvent<string>, searchTerm: string) => {
-        dispatch(setSearchTerm(searchTerm))
-    }
+    // const SearchProduct = (event: React.ChangeEvent<string>, searchTerm: string) => {
+    //     dispatch(setSearchTerm(searchTerm))
+    // }
 
     console.log(productsOg);
     function resetProducts(){
