@@ -5,7 +5,7 @@ export type Store = {
   filter: boolean | null,
   searchTerm: string,
   fetchData: Product[],
-  productDetail: ProductDetail
+  productDetail: ProductDetail | null
 }
 
 export type Filter = boolean | null;

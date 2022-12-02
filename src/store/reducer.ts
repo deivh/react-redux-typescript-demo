@@ -5,10 +5,10 @@ import { Action } from "./actions";
 
 const initialStore: Store = {
     filter: null,
-    data: <Product[]>[],
+    data: [],
     searchTerm: '',
-    fetchData: <Product[]>[],
-    productDetail: <ProductDetail>{},
+    fetchData: [],
+    productDetail: null,
 }
 
 function reducer(state = initialStore, action: Action) {
